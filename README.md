@@ -1,62 +1,130 @@
-# Spotify Analysis
+Here’s the updated README tailored to the **Spotify Analysis ETL Project**:
+
+
+# Spotify Analysis ETL Pipeline
 
 ## Contents
 0. [Introduction](#introduction)
 1. [Installation](#installation) 
 2. [Usage](#usage)
-3. [Project Architecture](#projectarchitecture)
-4. [Future Improvements](#futureimprovements)
-    1. [Calculation Improvements](#calculationimprovements)
-    2. [Platform Imrpovements](#platformimprovements)
-    3. [Code Quality Improvements](#codequalityimprovements)
-5. [How to Contribute](#howtocontribute)
+3. [Project Architecture](#project-architecture)
+4. [Future Improvements](#future-improvements)
+    1. [ETL Process Improvements](#etl-process-improvements)
+    2. [Visualization Enhancements](#visualization-enhancements)
+    3. [Code Quality Improvements](#code-quality-improvements)
+5. [How to Contribute](#how-to-contribute)
+
+---
 
 <a name="introduction"></a>
 ## Introduction 
 
-Welcome to Spotify Analysis. 
-Enjoy learning more about the music you listen to and your personal listening habits.
+Welcome to the Spotify Analysis ETL Pipeline. This project extracts data from the Spotify API, processes it to generate meaningful insights, and stores the results in an AWS data warehouse. Visualizations and insights can then be generated for deeper understanding of your listening habits.
 
+---
 
 <a name="installation"></a>
 ## Installation 
 
-#### Pre-Requisites
-[Python](https://www.python.org/downloads/), [Terraform](https://www.terraform.io/downloads.html) and [Spotipy](https://spotipy.readthedocs.io/en/2.13.0/).
+### Pre-Requisites
+Ensure the following tools are installed on your machine:
+- [Python](https://www.python.org/downloads/) (3.7+ recommended)
+- [Terraform](https://www.terraform.io/downloads.html)
+- [Spotipy](https://spotipy.readthedocs.io/en/2.13.0/)
 
+### Steps:
+1. Clone this repository:
+   ```bash
+   git clone https://github.com/yourusername/spotify-analysis-etl.git
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd spotify-analysis-etl
+   ```
+3. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+4. Configure your Spotify API credentials:
+   - Create a `.env` file in the root directory with the following variables:
+     ```
+     SPOTIPY_CLIENT_ID=your-client-id
+     SPOTIPY_CLIENT_SECRET=your-client-secret
+     SPOTIPY_REDIRECT_URI=your-redirect-uri
+     ```
+5. Initialize and apply the Terraform scripts:
+   ```bash
+   terraform init
+   terraform apply
+   ```
+
+---
 
 <a name="usage"></a>
 ## Usage 
-Run the scripts with a dictionary of your faovurite artists or playlists to gather data about them and save it locally or in S3.
+1. Define your favorite artists or playlists in the `config.json` file.
+2. Run the script to gather data:
+   ```bash
+   python etl_pipeline.py
+   ```
+3. Choose to store the processed data locally or upload it to an AWS S3 bucket.
+4. Generate insights and visualizations using the included notebooks.
 
-<a name="projectarchitecture"></a>
+---
+
+<a name="project-architecture"></a>
 ## Project Architecture 
 
-<img src="https://github.com/liamhartley/spotify_analysis/blob/master/spotify_analysis.drawio.png" width="500px">
+<img src="https://github.com/yourusername/spotify-analysis-etl/blob/master/architecture-diagram.png" width="500px">
 
-The Terraform scripts build:
-- A lambda function with the analysis code
-- A cloudwatch alarm to run that function weekly
-- All relevant IAM policies / roles
+The Terraform scripts set up the following AWS infrastructure:
+- **Lambda Function**: Executes the ETL process weekly.
+- **CloudWatch Alarm**: Triggers the Lambda function based on schedule or thresholds.
+- **IAM Policies/Roles**: Ensures secure access to Spotify API and AWS resources.
+- **S3 Bucket**: Stores the raw and processed Spotify data for further analysis.
 
-This will generate a datalake of Spotify data locally or in S3.
+This setup creates a scalable ETL pipeline that builds a datalake of Spotify data.
 
-<a name="futureimprovements"></a>
+---
+
+<a name="future-improvements"></a>
 ## Future Improvements
 
-Any 'TODO' tags in the project.
+<a name="etl-process-improvements"></a>
+##### ETL Process Improvements
+- Add support for additional Spotify API endpoints.
+- Improve data transformation logic for more complex analytics.
 
-<a name="calculationimprovements"></a>
-##### Calculation Improvements
+<a name="visualization-enhancements"></a>
+##### Visualization Enhancements
+- Integrate Power BI or Tableau dashboards for advanced insights.
+- Include time-series analysis of user listening trends.
 
-<a name="platformimprovements"></a>
-##### Platform Improvements
-- Improve UX
-- Upload as a package
+<a name="code-quality-improvements"></a>
+##### Code Quality Improvements
+- Refactor ETL script for modularity and scalability.
+- Add unit tests to ensure pipeline reliability.
 
-<a name="codequalityimprovements"></a>
-##### Code Quality Imrpovements
+---
 
-<a name="howtocontribute"></a>
+<a name="how-to-contribute"></a>
 ## How to Contribute 
-Make a branch and raise a PR
+
+Contributions are welcome! Follow these steps:
+1. Fork this repository.
+2. Create a branch for your feature or bug fix:
+   ```bash
+   git checkout -b feature-name
+   ```
+3. Commit your changes:
+   ```bash
+   git commit -m "Description of your changes"
+   ```
+4. Push your branch and create a Pull Request:
+   ```bash
+   git push origin feature-name
+   ```
+
+Feel free to raise an issue for bugs, suggestions, or feature requests.
+
+
